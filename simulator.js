@@ -1,4 +1,9 @@
-const fs = require('fs')
+import { FiniteAutomata } from './machines/finiteAutomata.js'
+import * as fs from 'fs';
+import path from 'path';
+import {fileURLToPath} from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const arqInput = '/input.txt'
 const pathInput = __dirname + `${arqInput}`
 const arqSpecs = '/specs/af_a_ast_b_b_ast.txt'
@@ -39,7 +44,9 @@ async function program() {
     
     switch (type) {
         case "F":
-            console.log("Finito")
+            for (let i = 0; i < input.length; i++) {
+                console.log(FiniteAutomata(input[i], specs))
+            }
             break;
         case "P":
             console.log("Pilha")
@@ -51,8 +58,6 @@ async function program() {
             console.log("Erro")
             break;
     }
-
-    
 }
 
 program()
