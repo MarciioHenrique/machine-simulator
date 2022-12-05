@@ -38,6 +38,13 @@ function readSpecs(caminho) {
     })
 }
 
+function writeOutput(data, input) {
+    fs.writeFile('output.txt', data + '; ' + input + '\n', {flag: 'a'}, (error) => {
+        if (error)
+            console.log(error)
+    })
+}
+
 async function program() {
     await readInput(pathInput)
     await readSpecs(pathSpecs)
@@ -45,7 +52,7 @@ async function program() {
     switch (type) {
         case "F":
             for (let i = 0; i < input.length; i++) {
-                console.log(FiniteAutomata(input[i], specs))
+                writeOutput(FiniteAutomata(input[i], specs), input[i])
             }
             break;
         case "P":
@@ -58,6 +65,7 @@ async function program() {
             console.log("Erro")
             break;
     }
+    console.log("Output finalizado")
 }
 
 program()
