@@ -6,8 +6,8 @@ import {fileURLToPath} from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const [arqSpecs, arqInput] = process.argv.splice(2)
-const pathInput = __dirname + `${arqInput}`
-const pathSpecs = __dirname + `${arqSpecs}`
+const pathInput = __dirname + `/${arqInput}`
+const pathSpecs = __dirname + `/specs/${arqSpecs}`
 
 let input = ""
 let specs = ""
