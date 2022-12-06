@@ -1,4 +1,5 @@
 import { FiniteAutomata } from './machines/finiteAutomata.js'
+import { pushdownAutomata } from './machines/pushdownAutomata.js';
 import * as fs from 'fs';
 import path from 'path';
 import {fileURLToPath} from 'url';
@@ -6,7 +7,7 @@ import {fileURLToPath} from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const arqInput = '/input.txt'
 const pathInput = __dirname + `${arqInput}`
-const arqSpecs = '/specs/af_a_ast_b_b_ast.txt'
+const arqSpecs = '/specs/ap_an_bn.txt'
 const pathSpecs = __dirname + `${arqSpecs}`
 
 let input = ""
@@ -56,7 +57,9 @@ async function program() {
             }
             break;
         case "P":
-            console.log("Pilha")
+            for (let i = 0; i < input.length; i++) {
+                writeOutput(pushdownAutomata(input[i], specs), input[i])
+            }
             break;
         case "T":
             console.log("Turing")

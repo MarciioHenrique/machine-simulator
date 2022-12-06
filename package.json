@@ -1,20 +1,3 @@
 {
-  "type": "module",
-  "name": "maquinas",
-  "version": "1.0.0",
-  "main": "simulator.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/MarciioHenrique/machine-simulator.git"
-  },
-  "author": "Marcio Henrique",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/MarciioHenrique/machine-simulator/issues"
-  },
-  "homepage": "https://github.com/MarciioHenrique/machine-simulator#readme",
-  "description": ""
+  "type": "module"
 }

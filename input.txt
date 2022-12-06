@@ -1,5 +1,1 @@
-abababababab
-bbbbbbababababa
-abababababbaaaaa
-abababab
-abb
+aabb
