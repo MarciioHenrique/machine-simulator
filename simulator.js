@@ -4,8 +4,8 @@ import * as fs from 'fs';
 import path from 'path';
 import {fileURLToPath} from 'url';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const [arqSpecs, arqInput] = process.argv.splice(2)
+const __dirname = path.dirname(fileURLToPath(import.meta.url)) //pega o diretorio
+const [arqSpecs, arqInput] = process.argv.splice(2) //pega as informações do terminal
 const pathInput = __dirname + `/${arqInput}`
 const pathSpecs = __dirname + `/specs/${arqSpecs}`
 
@@ -13,6 +13,7 @@ let input = ""
 let specs = ""
 let type = ""
 
+//pega a entrada
 function readInput(caminho) {
     return new Promise((resolve, reject) => {
         fs.readFile(caminho,'utf-8', (error, data) => {
@@ -25,6 +26,7 @@ function readInput(caminho) {
     })
 }
 
+//pega as especificações
 function readSpecs(caminho) {
     return new Promise((resolve, reject) => {
         fs.readFile(caminho,'utf-8', (error, data) => {
@@ -38,6 +40,7 @@ function readSpecs(caminho) {
     })
 }
 
+//escreve a saída do programa
 function writeOutput(data, input) {
     fs.writeFile('output.txt', data + '; ' + input + '\n', {flag: 'a'}, (error) => {
         if (error)
@@ -45,6 +48,7 @@ function writeOutput(data, input) {
     })
 }
 
+//define qual maquina será utilizada
 async function program() {
     await readInput(pathInput)
     await readSpecs(pathSpecs)
@@ -54,20 +58,22 @@ async function program() {
             for (let i = 0; i < input.length; i++) {
                 writeOutput(FiniteAutomata(input[i], specs), input[i])
             }
+            console.log("Output finalizado")
             break;
         case "P":
             for (let i = 0; i < input.length; i++) {
                 writeOutput(pushdownAutomata(input[i], specs), input[i])
             }
+            console.log("Output finalizado")
             break;
         case "T":
             console.log("Turing")
+            console.log("Output finalizado")
             break;
         default:
             console.log("Erro")
             break;
     }
-    console.log("Output finalizado")
 }
 
 program()
