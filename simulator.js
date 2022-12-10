@@ -1,8 +1,10 @@
 import { FiniteAutomata } from './machines/finiteAutomata.js'
 import { pushdownAutomata } from './machines/pushdownAutomata.js';
+import { turingMachine } from './machines/turingMachine.js';
 import * as fs from 'fs';
 import path from 'path';
 import {fileURLToPath} from 'url';
+
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url)) //pega o diretorio
 const [arqSpecs, arqInput] = process.argv.splice(2) //pega as informações do terminal
@@ -67,7 +69,9 @@ async function program() {
             console.log("Output finalizado")
             break;
         case "T":
-            console.log("Turing")
+            for (let i = 0; i < input.length; i++) {
+                writeOutput(turingMachine(input[i], specs), input[i])
+            }
             console.log("Output finalizado")
             break;
         default:
